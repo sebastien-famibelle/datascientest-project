@@ -1,0 +1,9 @@
+services:
+  icwebapp:
+    image: mariosfam/ic-webapp:1.0
+    container_name: ic-webapp
+    ports:
+      - 8080:8080
+    environment:
+      - "ODOO_URL=http://50.16.162.157:8069"
+      - "PGADMIN_URL=http://50.16.162.157:80"
