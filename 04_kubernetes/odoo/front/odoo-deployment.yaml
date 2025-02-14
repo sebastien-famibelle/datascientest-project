@@ -17,28 +17,30 @@ spec:
       labels:
         app: odoo-deployment
     spec:
-      # volumes:
-      # - name: config
-      #   persistentVolumeClaim:
-      #     claimName: odoo-pvc
-      # - name: web-data
-      #   persistentVolumeClaim:
-      #     claimName: odoo-pvc
-      # - name: addons
-      #   persistentVolumeClaim:
-      #     claimName: odoo-pvc
+      volumes:
+      - name: config
+        hostPath:
+          type: DirectoryOrCreate
+          path: /data-odoo/config
+      - name: web-data
+        persistentVolumeClaim:
+          claimName: odoo-pvc
+      - name: addons
+        hostPath:
+          type: DirectoryOrCreate
+          path: /data-odoo/addons
       containers:
       - image: odoo:17.0
         name: odoo
         ports:
         - containerPort: 8069
-        # volumeMounts:
-        # - name: web-data
-        #   mountPath: /var/lib/odoo
-        # - name: config
-        #   mountPath: /etc/odoo
-        # - name: addons
-        #   mountPath: /mnt/extra-addons
+        volumeMounts:
+        - name: web-data
+          mountPath: /var/lib/odoo
+        - name: config
+          mountPath: /etc/odoo
+        - name: addons
+          mountPath: /mnt/extra-addons
         env:
         - name: HOST
           valueFrom:
