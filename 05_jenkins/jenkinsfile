@@ -7,8 +7,8 @@ pipeline {
         IMAGE_TAG="1.0"
         PORT_APP= "8080"
         PORT_HOST= "8080"
-        DOCKERHUB_USERNAME= "ulrichsteve"
-        DOCKERHUB_PASSWORD= 
+        DOCKERHUB_USERNAME= "mariosfam"
+        DOCKERHUB_PASSWORD= credentials('dockerhub_password')
     }
     stages {
         stage('Build Image'){
