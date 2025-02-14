@@ -11,3 +11,5 @@ variable "username" {
 variable "region" {
   
 }
+
+variable  "script_name" {}

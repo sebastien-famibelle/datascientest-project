@@ -17,7 +17,7 @@ resource "aws_instance" "project_03" {
       private_key = file(var.private_key_path)
       host = self.public_ip
     }
-    scripts = [ "./scripts/docker.sh" ]
+    scripts = [ "./scripts/${var.script_name}" ]
   }
   provisioner "local-exec" {
     command = "echo -e 'instance_ip: ${self.public_ip}' >> ip_address.txt"
